@@ -151,8 +151,6 @@ class MainController extends Controller{
             header('Location: ' . '/main/index');
         } else if($_SESSION['street']=='' || $_SESSION['house']=='' || $_SESSION['city']==''){
             header('Location: ' . '/main/address');
-        } else if($_SESSION['comment']==''){
-            header('Location: ' . '/main/comment');
         }
         //desroy session
         session_destroy();
