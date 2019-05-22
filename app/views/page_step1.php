@@ -2,6 +2,9 @@
   <form method="POST">
     <ul class="flex-outer">
       <li>
+      <?= $this->error?>
+      </li>
+      <li>
         <label for="first-name">Name</label>
         <input type="text" id="first-name" name="name" value="<?=$_SESSION['name']?>" required>
       </li>

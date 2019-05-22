@@ -2,16 +2,19 @@
   <form method="POST">
     <ul class="flex-outer">
       <li>
+          <?= $this->error?>
+      </li>
+      <li>
         <label for="street">Street</label>
-        <input type="text" id="street" name="street" value="<?=$_SESSION['street']?>" required>
+        <input type="text" id="street" name="street" value="<?=$_SESSION['street']?>" >
       </li>
       <li>
         <label for="house">House №</label>
-        <input type="text" id="house" name="house" value="<?=$_SESSION['house']?>" required>
+        <input type="text" id="house" name="house" value="<?=$_SESSION['house']?>" >
       </li>
       <li>
         <label for="city">City</label>
-        <input type="text" id="city" name="city" value="<?=$_SESSION['city']?>" required>
+        <input type="text" id="city" name="city" value="<?=$_SESSION['city']?>" >
       </li>
       <li>
         <input type="hidden" name="action" value="data">
