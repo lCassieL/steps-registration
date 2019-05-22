@@ -14,7 +14,7 @@ class MainController extends Controller{
                     $_SESSION['phone'] = $phone;
                     header('Location: ' . '/main/address');
                 }else{
-                    $this->view->error = 'incorrect filed';
+                    $this->view->error = 'incorrect field';
                     $this->view->page = 'page_step1';
                     $this->view->render();
                 }
@@ -54,7 +54,7 @@ class MainController extends Controller{
                         $_SESSION['city'] = $city;
                         header('Location: ' . '/main/comment');
                     }else{
-                        $this->view->error = 'empty filed';
+                        $this->view->error = 'empty field';
                         $this->view->page = 'page_step2';
                         $this->view->render();
                     }
