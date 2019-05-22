@@ -4,6 +4,7 @@ class MainController extends Controller{
     public function action_index(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $action = filter_input(INPUT_POST,'action');
+            //send form
             if($action == 'data'){
                 $name = filter_input(INPUT_POST,'name');
                 $surname = filter_input(INPUT_POST,'surname');
@@ -14,14 +15,17 @@ class MainController extends Controller{
                     $_SESSION['phone'] = $phone;
                     header('Location: ' . '/main/address');
                 }else{
+                    //some errors
                     $this->view->error = 'incorrect field';
                     $this->view->page = 'page_step1';
                     $this->view->render();
                 }
             }else if($action == 'back'){
+                //previous step
                 $this->view->page = 'page_step1';
                 $this->view->render();
             }
+        //if window was closed but some information was input    
         } else if($_SESSION['name']!='' && $_SESSION['surname']!='' && $_SESSION['phone']!=''){
             if($_SESSION['address']!=''){
                 if($_SESSION['comment']!=''){
@@ -33,6 +37,7 @@ class MainController extends Controller{
                 header('Location: ' . '/main/address');
             }
         }else{
+            //render step1
             $this->view->page = 'page_step1';
             $this->view->render();
         }
@@ -41,7 +46,9 @@ class MainController extends Controller{
     public function action_address(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $action = filter_input(INPUT_POST,'action');
+            //send form
             if($action == 'data'){
+                //if user missed first step
                 if($_SESSION['name']=='' || $_SESSION['surname']=='' || $_SESSION['phone']==''){
                     header('Location: ' . '/main/index');
                 }else{
@@ -54,15 +61,18 @@ class MainController extends Controller{
                         $_SESSION['city'] = $city;
                         header('Location: ' . '/main/comment');
                     }else{
+                        //some errors
                         $this->view->error = 'empty field';
                         $this->view->page = 'page_step2';
                         $this->view->render();
                     }
                 }
             }else if($action == 'back'){
+                //previous step
                 $this->view->page = 'page_step2';
                 $this->view->render();
             }
+        //if window was closed but some information was input  
         }else if($_SESSION['street']!='' && $_SESSION['house']!='' && $_SESSION['city']!=''){
             if($_SESSION['comment']!=''){
                 header('Location: '. '/main/result');
@@ -70,6 +80,7 @@ class MainController extends Controller{
                 header('Location: ' . '/main/comment');
             }
         }else{
+            //render step2
             $this->view->page = 'page_step2';
             $this->view->render();
         }
@@ -77,6 +88,7 @@ class MainController extends Controller{
         
     public function action_comment(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            //if user missed some steps
             if($_SESSION['name']=='' || $_SESSION['surname']=='' || $_SESSION['phone']==''){
                 header('Location: ' . '/main/index');
             }else if($_SESSION['street']=='' || $_SESSION['house']=='' || $_SESSION['city']==''){
